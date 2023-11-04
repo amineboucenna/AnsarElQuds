@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Boxicons -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- My CSS -->
+    {% load static %} {% load i18n %}
+    
+    <link rel="stylesheet" href="{% static 'profile/settings.css' %}" type="text/css">
+    <script src="{% static 'countries.js' %}"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <title>{% trans 'Edit Profile' %}</title>
+
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <section class="dashboard">
+    
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="grid">
+                    <label for="fname" class="text-label">{% trans 'First Name' %}</label>
+                    <input type="text" id="fname" name="fname" class="input" placeholder="Jhon" value="{{request.user.first_name}}" />
+
+                    <label for="lname" class="text-label">{% trans 'Last Name' %}</label>
+                    <input type="text" id="lname" name="lname" class="input" placeholder="Doe" value="{{request.user.last_name}}" />
+
+                    <label for="email" class="text-label">{% trans 'Email address' %}</label>
+                    <input type="email" id="email" name="email" class="input" placeholder="username@example.com" value="{{request.user.email}}" required />
+
+
+                    <label for="country" class="text-label">{% trans 'Country' %}</label>
+                    <select name="country" id="country">
+                        <option value="{{request.user.country}}" selected>{{request.user.country}}</option>
+            
+                    </select>
+                    
+                    <div>
+                        <label for="profile-file" class="text-label">{% trans 'Update profile picture' %}</label>
+                        <input type="file" name="profile-file" id="profile-file" onchange="checkFileType(this)" class="file-input" />
+                        
+                        <p class="input-help" id="file_input_help">JPG, PNG (Recommended 150x150px).</p>
+                    </div>
+
+                    <label for="password" class="text-label">{% trans 'Current Password' %}</label>
+                    <input type="password" id="password" name="password" class="input" placeholder="•••••••••" required />
+
+                    <label for="new_password" class="text-label">{% trans 'New password' %}</label>
+                    <input type="password" id="new_password" name="new_password" class="input" placeholder="•••••••••" />
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="confirm-cancel">
+                        <button type="submit" class="button confirm">{% trans 'Confirm' %}</button>
+                        <a href="{% url 'profile' %}">
+                            <button type="button" class="button cancel">{% trans 'Cancel' %}</button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>

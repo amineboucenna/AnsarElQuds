@@ -1,0 +1,77 @@
+body {
+  background-image: url("../background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard{
+  margin: 0vw 20vw 0vw 20vw;
+}
+/* Title styles */
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.title i {
+  margin-right: 0.5rem;
+}
+
+/* Form label styles */
+.text-label {
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+select {
+  height: 40px;
+  padding: 0.5rem;
+  border: 1px solid #fff;
+}
+
+select option {
+  height: 40px;
+  padding: 0.5rem;
+}
+
+select{
+  border-radius: 5px;
+}
+/* Input field styles */
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+
+p{
+  color: #fff;
+}
+/* Button styles */
+.button {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+/* Confirm button styles */
+.button.confirm {
+  background: linear-gradient(to right, #4caf50, #45a049, #4caf50);
+  color: white;
+}
+
+/* Cancel button styles */
+.button.cancel {
+  background: linear-gradient(to right, #f44336, #f44033, #f44336);
+  color: white;
+}

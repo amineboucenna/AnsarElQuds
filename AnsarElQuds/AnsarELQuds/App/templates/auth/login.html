@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load i18n %}
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'auth/auth.css' %}" />
+  <link rel="stylesheet" href="{% static 'auth/login.css' %}">
+  <title>{% trans "Login" %}</title>
+</head>
+
+<body>
+
+
+  <div class="background">
+
+  </div>
+
+  <div class="content">
+    <div class="ansar-logo">
+
+    </div>
+    <div>
+      <p id="error-messages">{{msg}}</p>
+      <form method="post">
+        {% csrf_token %}
+        <div class="input-box">
+          <input type="text" name="email" id="email" required placeholder="{% trans 'Email or Username' %}" />
+          <input type="password" name="password" id="password" required placeholder="{% trans 'Password' %}" />
+        </div>
+        <div class="remember-forgot">
+          <input type="checkbox" name="" id="" checked />{% trans "Remember me" %}
+          <a href="">{% trans "Forgot password?" %}</a>
+        </div>
+        <button type="submit" class="btn">{% trans "Login" %}</button>
+        <div class="login-register">
+          <p>
+            {% trans "Don't have an account?" %}
+            <a href="{% url 'sign-up' %}" class="register-link">{% trans "Sign up" %}</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+</body>
+
+</html>

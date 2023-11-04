@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'news.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="news-title" id="create-news-input" />
+            <div id="actions-container">
+                <div class="left-side">
+                    <label class="custom-file-input">
+                        <input type="file" name="media-input" id="media-input" class="media-input" accept="image/*,video/*">
+                        <button type="button"><i class="ti ti-file-upload"></i></button>
+                    </label>
+                    <input type="text" name="position" id="position" hidden >
+                    <button id="show-maps"><i class="ti ti-brand-google-maps"></i></button>
+                </div>
+                <div class="right-side">
+                    <button type="submit" id="submit-button">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="news-grid">
+        
+
+        {% for article in news %}
+<div class="news-card">
+    {% if article.media_type == "video" %}
+    <video controls>
+        <source src="{{ article.media.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% else %}
+    <img src="{{ article.media.url }}" alt="News Media" class="news-media">
+    {% endif %}
+    <div class="news-title">{{ article.title }}</div>
+    <div class="news-publisher"><i class="ti ti-user-filled"></i> {{ article.posted_by.username }}</div>
+    <div class="news-date"><i class="ti ti-calendar-stats"></i> {{ article.date_posted }}</div>
+    <div class="news-position"><i class="ti ti-map-pin"></i> Quds, Palestine</div>
+    <div class="news-votes">
+     
+        <span class="news-vote-button">
+            <a href="{% url 'upvote-news' article.id %}">
+                {{article.up_votes}} <i class="ti ti-arrow-big-up-filled"></i>
+            </a>
+        </span>
+        <span class="news-vote-button">
+            <a href="{% url 'downvote-news' article.id %}">
+                {{article.down_votes}}  <i class="ti ti-arrow-big-down-filled"></i>
+            </a>
+        </span>
+        
+    </div>
+</div>
+{% endfor %}
+
+    
+      
+      <div class="pagination">
+          <span class="step-links">
+              {% if news.has_previous %}
+                  <a href="?page=1">&laquo; first</a>
+                  <a href="?page={{ news.previous_page_number }}">previous</a>
+              {% endif %}
+      
+              <span class="current-page">Page {{ news.number }} of {{ news.paginator.num_pages }}.</span>
+      
+              {% if news.has_next %}
+                  <a href="?page={{ news.next_page_number }}">next</a>
+                  <a href="?page={{ news.paginator.num_pages }}">last &raquo;</a>
+              {% endif %}
+          </span>
+      </div>
+
+      
+
+    <div class="maps-container hidden">
+        <div class="maps-box">
+            <div class="maps-container-navbar">
+                <button id="close-maps">X</button>
+            </div>
+            <div id="map-selector"></div>
+        </div>
+    </div>
+
+
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map("map-selector").setView([51.505, -0.09], 13);
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+            }).addTo(map);
+
+            var marker;
+            const position_input = document.getElementById('position');
+
+            map.on("click", function(e) {
+                if (marker) {
+                    map.removeLayer(marker);
+                }
+                marker = L.marker(e.latlng).addTo(map);
+
+                var latitude = e.latlng.lat;
+                var longitude = e.latlng.lng;
+                console.log("Selected Coordinates: Latitude " + latitude + ", Longitude " + longitude);
+                position_input.value = latitude + '+' + longitude;
+            });
+
+            const showMapsButton = document.getElementById("show-maps");
+            const showMapsContainer = document.getElementById("show-maps-container");
+            const divContainer = document.querySelector(".container");
+            const mapsContainer = document.querySelector(".maps-container");
+
+            showMapsButton.addEventListener("click", function(e) {
+                e.preventDefault();
+                divContainer.classList.add("hidden");
+                mapsContainer.classList.remove("hidden");
+            });
+
+            const closeMapsButton = document.getElementById("close-maps");
+            closeMapsButton.addEventListener("click", function() {
+                divContainer.classList.remove("hidden");
+                mapsContainer.classList.add("hidden");
+            });
+
+            
+        });
+    </script>
+</body>
+</html>

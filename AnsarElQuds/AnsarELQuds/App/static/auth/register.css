@@ -1,0 +1,42 @@
+select {
+    height: 30px;
+    padding: 5px;
+    border: 1px solid #fff;
+}
+
+select option {
+    height: 30px;
+    padding: 5px;
+}
+
+select{
+    border-radius: 7px;
+}
+
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+.background {
+    animation: slideFromLeft 2s ease forwards;
+}
+
+.content {
+    animation: slideFromRight 2s ease forwards;
+}

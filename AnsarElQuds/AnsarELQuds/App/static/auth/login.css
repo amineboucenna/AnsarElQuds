@@ -1,0 +1,26 @@
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+.background {
+    animation: slideFromRight 2s ease forwards;
+}
+
+.content {
+    animation: slideFromLeft 2s ease forwards;
+}

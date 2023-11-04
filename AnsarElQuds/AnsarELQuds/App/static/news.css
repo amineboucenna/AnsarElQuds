@@ -1,0 +1,169 @@
+body {
+    background-image: url("./background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+    gap:20px; 
+}
+
+#create-news-input{
+    background-color: #1E1E1E;
+    border: 1px solid black;
+    color:#fff;
+    height:20vh;
+    width: 50vw;
+    border-radius: 4%;
+}
+
+#actions-container{
+    display: flex;
+    width: 50vw;
+}
+
+
+.left-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+#image-upload {
+    background-color: #f2f2f2;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+}
+
+#submit-button {
+
+        background-color: green;
+        padding: 2px 4px 2px 4px;
+        color: #fff;
+        border-radius: 10px;
+}
+
+#map-selector {
+    width: 50vw;
+    height: 60vh;
+    border: 1px solid #ccc;
+}
+
+
+.custom-file-input,#show-maps{
+  border-radius: 3px;
+  padding: 0px 4px 2px 0px;
+  color: #fff;
+  font-size: 28px;
+
+}
+
+.custom-file-input input {
+  overflow: hidden;
+  width: 0;
+}
+
+.maps-box{
+    position: fixed;
+    top: 10vh;
+    left: 20vw;
+}
+
+.maps-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+    gap:20px;
+}
+
+
+.maps-container hidden{
+    display: none;
+}
+
+.maps-container-navbar{
+    background-color: #1E1E1E;
+    color: #fff;
+    direction: rtl;
+}
+
+.container hidden{
+    display: none;
+}
+
+/* cards */
+/* Define styles for the news card */
+
+/* Define a grid layout for the news cards */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns per row */
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.news-card {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #1E1E1E;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-title,.news-publisher,.news-details,.news-date,.news-position {
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.news-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.news-card > video{
+    width: 100%;
+    height: 300px;
+}
+
+.news-media {
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Style for up and down votes */
+.news-votes {
+    margin-top: 10px;
+    font-size: 1.1em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.news-vote-button {
+    cursor: pointer;
+    color: #fff;
+}
+
+/* Add additional styles as needed */
+
+.upvote-button {
+    background-color: #337DFF; /* Blue color */
+    color: white;
+}
